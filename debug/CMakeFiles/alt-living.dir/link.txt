@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -Wall -DDATADIR=./data -fPIE -rdynamic CMakeFiles/alt-living.dir/src/main.cpp.o CMakeFiles/alt-living.dir/src/systems/PhysicsSystem.cpp.o -o alt-living   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib /usr/lib/libraylib.so -lpugixml -lraylib 
