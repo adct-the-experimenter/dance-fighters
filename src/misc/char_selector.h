@@ -31,13 +31,10 @@ struct RenderModelSlot
 	size_t color_choice = 0;
 };
 
-struct CharacterBox
+struct FighterBox
 {
 	
 	NameSlot name_slot;
-	
-	//everyone has the same body and head dimensions for now
-	//only hair, eyes, and clothing are different.
 	
 	//hair = 0, head=1,eyes=2,upper clothing = 3, lower clothing = 4, shoes=5
 	RenderModelSlot render_slot;
@@ -70,13 +67,14 @@ public:
 	std::uint8_t render_slot = 2; //index for first render slot
 	std::uint8_t last_slot = 7; //index for the last slot
 	
+	
 private:
 
 	//vector to hold pointers to player entities
 	std::vector <Entity*> player_entities_vec;
 	
 	//vector to hold a character box for each player
-	std::vector <CharacterBox> player_char_boxes;
+	std::vector <FighterBox> fighter_boxes;
 	
 	//array to hold color choices
 	std::array <Color,8> colors;
@@ -90,6 +88,8 @@ private:
 	//input specific handler functions
 	void handle_controller_input(ControllerInput& input);
 	void handle_keyboard_input(KeyboardInput& input);
+	
+	std::uint8_t m_num_fighters;
 };
 
 #endif

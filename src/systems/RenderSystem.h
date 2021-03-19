@@ -12,13 +12,13 @@
 class RenderSystem : public System
 {
 public:
-	void Init(std::vector <CustomCamera> *cameras,std::uint8_t num_players);
+	void Init(CustomCamera* camera);
 
 	void Update();
 		
 private:
 
-	CustomCamera *m_camera_ptr;
+	CustomCamera* m_camera_ptr;
 	
 };
 

@@ -86,6 +86,7 @@ GameState m_game_state = GameState::TITLE_MENU;
 
 //camera to follow players.
 std::shared_ptr <CameraSystem> cameraSystem;
+CustomCamera main_camera;
 
 bool video_game_playing = false;
 
@@ -220,10 +221,10 @@ void logic()
 				gCharSelector.Init(&entities,gNumPlayers);
 				
 				//initialize camera system
-				cameraSystem->Init(&player_cameras,gNumPlayers,screenWidth,screenHeight);
+				cameraSystem->Init(&main_camera,screenWidth,screenHeight);
 				
 				//initialize render system
-				renderSystem->Init(&player_cameras,gNumPlayers);
+				renderSystem->Init(&main_camera);
 				
 				//move to next state
 				m_game_state = GameState::CHAR_SELECTOR;

@@ -13,14 +13,10 @@ extern Coordinator gCoordinator;
 #include "misc/level_maps.h"
 
 
-void RenderSystem::Init(std::vector <CustomCamera> *cameras,std::uint8_t num_players)
+void RenderSystem::Init(CustomCamera* camera)
 {
-	m_cameras_ptr = cameras;
-    
-    RenderSystem::InitViewportsForThisNumberOfPlayers(num_players);
-    
-    m_num_players = num_players;
-    
+	m_camera_ptr = camera;
+        
 }
 
 bool IsObjectInCameraView(float& posX, float& posY, Rectangle& camera_rect)
@@ -108,14 +104,14 @@ void RenderSystem::Update()
 		//render tiles
 		if(levelOne_tilemap_ptr)
 		{
-			RenderLevelMapRelativeToCamera(levelOne_tilemap_texture_ptr,levelOne_tilemap_ptr,m_cameras_ptr->at(i).camera_rect);
+			RenderLevelMapRelativeToCamera(levelOne_tilemap_texture_ptr,levelOne_tilemap_ptr,m_camera_ptr->camera_rect);
 		}
 		#endif
 		
 		#ifndef TILE_EDITOR
 		if(levelOne_map)
 		{
-			RenderLevelMapRelativeToCamera(&levelOne_map->tilesheetTexture,&levelOne_map->tiles,m_cameras_ptr->at(i).camera_rect);
+			RenderLevelMapRelativeToCamera(&levelOne_map->tilesheetTexture,&levelOne_map->tiles,m_camera_ptr->camera_rect);
 		}
 		#endif
 		
@@ -127,7 +123,7 @@ void RenderSystem::Update()
 			auto& render_comp = gCoordinator.GetComponent<RenderComponent>(entity);
 			auto& transform = gCoordinator.GetComponent<Transform2D>(entity);
 			
-			bool renderObjectBool = IsObjectInCameraView(transform.position.x,transform.position.y,m_cameras_ptr->at(i).camera_rect);
+			bool renderObjectBool = IsObjectInCameraView(transform.position.x,transform.position.y,m_camera_ptr->camera_rect);
 			
 			//if renderable object is within camera bounds.
 			if(renderObjectBool)
@@ -135,8 +131,8 @@ void RenderSystem::Update()
 				//change render position of renderable object relative to camera
 				auto& render_position = gCoordinator.GetComponent<RenderPosition>(entity);
 					
-				render_position.overall_position.x = transform.position.x - m_cameras_ptr->at(i).camera_rect.x;
-				render_position.overall_position.y = transform.position.y - m_cameras_ptr->at(i).camera_rect.y;
+				render_position.overall_position.x = transform.position.x - m_camera_ptr->camera_rect.x;
+				render_position.overall_position.y = transform.position.y - m_camera_ptr->camera_rect.y;
 				
 				//render object
 				//if not multi part render
@@ -192,73 +188,3 @@ void RenderSystem::Update()
 	
 }
 
-
-void RenderSystem::InitViewportsForThisNumberOfPlayers(std::uint8_t num_players)
-{
-	m_viewports.resize(num_players);
-	
-	std::int32_t screenWidth = GetScreenWidth();
-	std::int32_t screenHeight = GetScreenHeight();
-	
-	
-	switch(num_players)
-	{
-		case 1:
-		{
-			m_viewports[0].rect.x = 0; m_viewports[0].rect.y = 0;
-			m_viewports[0].rect.width = screenWidth; m_viewports[0].rect.height = screenHeight;
-			break;
-		}
-		case 2:
-		{
-			m_viewports[0].rect.x = 0; m_viewports[0].rect.y = 0;
-			m_viewports[0].rect.width = screenWidth; m_viewports[0].rect.height = screenHeight / 2;
-			
-			m_viewports[1].rect.x = 0; m_viewports[1].rect.y = screenHeight / 2;
-			m_viewports[1].rect.width = screenWidth; m_viewports[1].rect.height = screenHeight / 2;
-			break;
-		}
-		case 3:
-		{
-			m_viewports[0].rect.x = 0; m_viewports[0].rect.y = 0;
-			m_viewports[0].rect.width = screenWidth / 2; m_viewports[0].rect.height = screenHeight / 2;
-			
-			m_viewports[1].rect.x = screenWidth / 2; m_viewports[1].rect.y = 0;
-			m_viewports[1].rect.width = screenWidth / 2; m_viewports[1].rect.height = screenHeight / 2;
-			
-			m_viewports[2].rect.x = screenWidth / 4; m_viewports[2].rect.y = screenHeight / 2;
-			m_viewports[2].rect.width = screenWidth / 2; m_viewports[2].rect.height = screenHeight / 2;
-			break;
-		}
-		case 4:
-		{
-			m_viewports[0].rect.x = 0; m_viewports[0].rect.y = 0;
-			m_viewports[0].rect.width = screenWidth / 2; m_viewports[0].rect.height = screenHeight / 2;
-			
-			m_viewports[1].rect.x = screenWidth / 2; m_viewports[1].rect.y = 0;
-			m_viewports[1].rect.width = screenWidth / 2; m_viewports[1].rect.height = screenHeight / 2;
-			
-			m_viewports[2].rect.x = 0; m_viewports[2].rect.y = screenHeight / 2;
-			m_viewports[2].rect.width = screenWidth / 2; m_viewports[2].rect.height = screenHeight / 2;
-			
-			m_viewports[3].rect.x = screenWidth / 2; m_viewports[3].rect.y = screenHeight / 2;
-			m_viewports[3].rect.width = screenWidth / 2; m_viewports[3].rect.height = screenHeight / 2;
-			break;
-		}
-		default:{std::cout << "Unsupported number of players in viewports init!\n";}
-	}
-	
-	for(size_t i = 0; i < m_viewports.size(); i++)
-	{
-		m_viewports[i].target_texture = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
-		SetTextureFilter(m_viewports[i].target_texture.texture, FILTER_BILINEAR);  // Texture scale filter to use
-		
-		m_viewports[i].clip = {0,0, 
-							(float)m_viewports.at(i).target_texture.texture.width, 
-							(float)-m_viewports.at(i).target_texture.texture.height};
-		
-			   
-		m_viewports[i].position = Vector2{m_viewports.at(i).rect.x,m_viewports.at(i).rect.y};
-	}
-	
-}

@@ -11,15 +11,14 @@
 class CameraSystem : public System
 {
 public:
-	void Init(std::vector <CustomCamera> *cameras, std::uint8_t num_players,
+	void Init(CustomCamera* camera_ptr,
 				std::uint16_t screenWidth, std::uint16_t screenHeight);
 
 	void Update();
 	
 protected:
 
-	std::vector <CustomCamera> *m_cameras_ptr;
-	std::uint8_t m_num_players;
+	CustomCamera* m_camera_ptr;
 };
 
 #endif
