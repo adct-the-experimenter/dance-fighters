@@ -1,3 +1,0 @@
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/rebuild_cache.dir
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/edit_cache.dir
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir
