@@ -44,86 +44,32 @@ bool IsObjectInCameraView(float& posX, float& posY, Rectangle& camera_rect)
 	return true;
 }
 
-void RenderLevelMapRelativeToCamera(Texture2D* tilesheet_ptr, std::vector <Tile> *levelmap_ptr,Rectangle& camera)
-{
-	bool render = true;
-	
-	if(!tilesheet_ptr)
-	{
-		std::cout << "Level map tilesheet texture is uninitialized in render!\n";
-		render = false;
-	}
-	if(!levelmap_ptr)
-	{
-		std::cout << "Level map pointer is uninitialized in render!\n";
-		render = false;
-	}
-	
-	if(render)
-	{
-		for(size_t i = 0; i < levelmap_ptr->size(); i++)
-		{
-			bool renderTile = false;
-			
-			if( (levelmap_ptr->at(i).x >= camera.x) && 
-				(levelmap_ptr->at(i).x <= camera.x + camera.width) &&
-				(levelmap_ptr->at(i).y >= camera.y) &&
-				(levelmap_ptr->at(i).y <= camera.y + camera.height))
-			{
-				renderTile = true;
-			}
-			
-			if( renderTile )
-			{
-				
-				Vector2 pos = {levelmap_ptr->at(i).x - camera.x,levelmap_ptr->at(i).y - camera.y};
-				if(levelmap_ptr->at(i).frame_clip_ptr)
-				{
-					DrawTextureRec(*tilesheet_ptr, 
-							   *levelmap_ptr->at(i).frame_clip_ptr, 
-							   pos, 
-							   WHITE);
-				}
-			}
-			
-		}
-	}
-}
+Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };  // Set model position
 
 void RenderSystem::Update()
 {
-		
+			
 	if(this->m_camera_ptr)
 	{			
 		//render texture background color
 		ClearBackground(RAYWHITE);
 		
-		
-					
-		#ifdef TILE_EDITOR
-		//render tiles
-		if(levelOne_tilemap_ptr)
-		{
-			RenderLevelMapRelativeToCamera(levelOne_tilemap_texture_ptr,levelOne_tilemap_ptr,m_camera_ptr->camera_rect);
+		BeginMode3D(this->m_camera_ptr->GetReferenceToCamera());
+        
+        //draw the stage
+        if(main_stage.mapPixels)
+        {
+			DrawModel(main_stage.model, mapPosition, 1.0f, WHITE); // Draw maze map
 		}
-		#endif
-		
-		#ifndef TILE_EDITOR
-		if(levelOne_map)
-		{
-			RenderLevelMapRelativeToCamera(&levelOne_map->tilesheetTexture,&levelOne_map->tiles,m_camera_ptr->camera_rect);
-		}
-		#endif
-		
-		
-		
+        
 		//for every entity
 		for (auto const& entity : mEntities)
 		{
 			auto& render_comp = gCoordinator.GetComponent<RenderComponent>(entity);
 			auto& transform = gCoordinator.GetComponent<Transform2D>(entity);
 			
-			bool renderObjectBool = IsObjectInCameraView(transform.position.x,transform.position.y,m_camera_ptr->camera_rect);
+			//bool renderObjectBool = IsObjectInCameraView(transform.position.x,transform.position.y,m_camera_ptr->camera_rect);
+			bool renderObjectBool = true;
 			
 			//if renderable object is within camera bounds.
 			if(renderObjectBool)
@@ -131,8 +77,10 @@ void RenderSystem::Update()
 				//change render position of renderable object relative to camera
 				auto& render_position = gCoordinator.GetComponent<RenderPosition>(entity);
 					
-				render_position.overall_position.x = transform.position.x - m_camera_ptr->camera_rect.x;
-				render_position.overall_position.y = transform.position.y - m_camera_ptr->camera_rect.y;
+				//render_position.overall_position.x = transform.position.x - m_camera_ptr->camera_rect.x;
+				render_position.overall_position.x = transform.position.x;
+				//render_position.overall_position.y = transform.position.y - m_camera_ptr->camera_rect.y;
+				render_position.overall_position.y = transform.position.y;
 				
 				//render object
 				//if not multi part render
@@ -182,6 +130,8 @@ void RenderSystem::Update()
 				}
 			}
 		}
+		
+		EndMode3D();
 					
 	}
 		

@@ -89,18 +89,18 @@ CMakeFiles/dance-fighters.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dance-fighters.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/main.cpp -o CMakeFiles/dance-fighters.dir/src/main.cpp.s
 
-CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o: CMakeFiles/dance-fighters.dir/flags.make
-CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o: ../src/misc/TileManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o -c /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.cpp
+CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o: CMakeFiles/dance-fighters.dir/flags.make
+CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o: ../src/misc/StageManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o -c /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.cpp
 
-CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.cpp > CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.i
+CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.cpp > CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.i
 
-CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.cpp -o CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.s
+CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.cpp -o CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.s
 
 CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o: CMakeFiles/dance-fighters.dir/flags.make
 CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o: ../src/misc/globalvariables.cpp
@@ -261,7 +261,7 @@ CMakeFiles/dance-fighters.dir/src/core/KeyboardTypingInputHandler.cpp.s: cmake_f
 # Object files for target dance-fighters
 dance__fighters_OBJECTS = \
 "CMakeFiles/dance-fighters.dir/src/main.cpp.o" \
-"CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o" \
+"CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o" \
 "CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o" \
 "CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.o" \
 "CMakeFiles/dance-fighters.dir/src/misc/char_selector.cpp.o" \
@@ -279,7 +279,7 @@ dance__fighters_OBJECTS = \
 dance__fighters_EXTERNAL_OBJECTS =
 
 dance-fighters: CMakeFiles/dance-fighters.dir/src/main.cpp.o
-dance-fighters: CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o
+dance-fighters: CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o
 dance-fighters: CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o
 dance-fighters: CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.o
 dance-fighters: CMakeFiles/dance-fighters.dir/src/misc/char_selector.cpp.o

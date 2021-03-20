@@ -14,9 +14,9 @@ void CameraSystem::Init(CustomCamera* camera,
 {
 	m_camera_ptr = camera;
 		
-	m_camera_ptr->camera_rect.width = screenWidth;
-	m_camera_ptr->camera_rect.height = screenHeight;
-	
+	//m_camera_ptr->camera_rect.width = screenWidth;
+	//m_camera_ptr->camera_rect.height = screenHeight;
+	SetCameraMode(camera->GetReferenceToCamera(), CAMERA_PERSPECTIVE);     // Set camera mode
 	
 }
 
@@ -35,6 +35,7 @@ void CameraSystem::Update()
 		//15 is half of the width of the player character
 		//45 is half of the player's width
 		
+		/*
 		m_camera_ptr->camera_rect.x = (transform.position.x + 15) - (m_camera_ptr->camera_rect.width / 2);
 		m_camera_ptr->camera_rect.y = (transform.position.y + 45) - (m_camera_ptr->camera_rect.height / 2);
 		
@@ -49,6 +50,7 @@ void CameraSystem::Update()
 		{
 			m_camera_ptr->camera_rect.y = 0;
 		}
+		*/
 		
 		/*
 		std::cout << "Player " << int(player.num_player) << " , Camera(x,y): " << m_cameras_ptr->at(player.num_player - 1).camera_rect.x << "," 
@@ -57,6 +59,9 @@ void CameraSystem::Update()
 		*/
 		
 	}
+	
+	// Update camera
+	UpdateCamera(m_camera_ptr->GetPointerToCamera());      
 	
 }
 

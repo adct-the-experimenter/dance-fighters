@@ -122,7 +122,7 @@ CMakeFiles/dance-fighters.dir/src/main.cpp.o
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/core/coordinator.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/main.cpp
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/MediaLoader.h
- /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.h
+ /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/camera.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/char_selector.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/globalvariables.h
@@ -235,9 +235,9 @@ CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.o
  /usr/include/SDL2/SDL_video.h
  /usr/include/SDL2/begin_code.h
  /usr/include/SDL2/close_code.h
-CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o
- /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.cpp
- /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.h
+CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o
+ /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.cpp
+ /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/globalvariables.h
  /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/level_maps.h
  /usr/include/SDL2/SDL.h

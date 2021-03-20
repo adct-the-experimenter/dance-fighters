@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/core/KeyboardTypingInputHandler.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/core/KeyboardTypingInputHandler.cpp.o"
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/main.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/main.cpp.o"
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/MediaLoader.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.o"
-  "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/TileManager.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o"
+  "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/StageManager.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o"
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/char_selector.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/misc/char_selector.cpp.o"
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/misc/globalvariables.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o"
   "/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/AnimationSystem.cpp" "/home/pab/CodeProj/cxx_projects/games/dance-fighters/debug/CMakeFiles/dance-fighters.dir/src/systems/AnimationSystem.cpp.o"

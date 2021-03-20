@@ -20,7 +20,7 @@
 #include "misc/MediaLoader.h"
 #include "misc/globalvariables.h"
 
-#include "misc/TileManager.h"
+#include "misc/StageManager.h"
 
 #include "misc/char_selector.h" //for CharacterCreator class
 
@@ -96,7 +96,7 @@ std::int8_t gNumPlayers = 2;
 const std::int16_t screenWidth = 800;
 const std::int16_t screenHeight = 600;
 
-TileManager gTileManager;
+StageManager gStageManager;
 
 int main(int argc, char* args[])
 {
@@ -115,7 +115,7 @@ int main(int argc, char* args[])
 		InitMainECS();
 		
 		//if first level loaded well
-		if(gTileManager.LoadLevel(0))
+		if(gStageManager.LoadLevel(0))
 		{
 			bool quit = false;
 	
@@ -141,7 +141,7 @@ int main(int argc, char* args[])
 	}
 	
 	gMediaLoader.freeMedia();
-	gTileManager.FreeLevels();
+	//gStageManager.FreeLevels();
 	
     
 	CloseRaylibSystem();

@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/dance-fighters.dir/src/core/KeyboardTypingInputHandler.cpp.o"
   "CMakeFiles/dance-fighters.dir/src/main.cpp.o"
   "CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.o"
-  "CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o"
+  "CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o"
   "CMakeFiles/dance-fighters.dir/src/misc/char_selector.cpp.o"
   "CMakeFiles/dance-fighters.dir/src/misc/globalvariables.cpp.o"
   "CMakeFiles/dance-fighters.dir/src/systems/AnimationSystem.cpp.o"

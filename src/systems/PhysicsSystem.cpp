@@ -182,6 +182,7 @@ void PhysicsSystem::CheckCollisionWithTilesRPG(float& obj_x, float& obj_y,
 												std::uint32_t& obj_width,
 												std::uint32_t& obj_height)
 {
+	/*
 	#ifndef TILE_EDITOR
 	if(levelOne_map)
 	{
@@ -254,4 +255,5 @@ void PhysicsSystem::CheckCollisionWithTilesRPG(float& obj_x, float& obj_y,
 		}
 	}
 	#endif
+	*/
 }

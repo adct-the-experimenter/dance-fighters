@@ -6,39 +6,15 @@
 #include <cstdint>
 #include <iostream>
 
-
-enum class TileType : std::uint8_t {NONE=0, PUSH_BACK, BACKGROUND};
-
-struct Tile
+struct Stage
 {
-	std::uint32_t x;
-	std::uint32_t y;
-	TileType type;
-	Rectangle* frame_clip_ptr;
-	std::uint32_t tile_number;
+	//holds entire 3d mesh of stage
+	Model model;
+	//holds color info of image, black = floor, white = wall
+	Color *mapPixels = nullptr; 
 };
 
-extern Texture2D* levelOne_tilemap_texture_ptr;
-extern std::vector <Tile> *levelOne_tilemap_ptr;
-extern std::uint32_t levelOne_tilewidth;
-extern std::uint32_t levelOne_tileheight;
-
-struct TileMap
-{
-	std::vector <Tile> tiles;
-	std::vector <Rectangle> frame_clip_map;
-
-	std::uint32_t levelWidth;
-	std::uint32_t levelHeight;
-	std::uint32_t tiles_startx;
-	std::uint32_t tiles_starty;
-	
-	std::uint32_t tileWidth;
-	std::uint32_t tileHeight;
-	Texture2D tilesheetTexture;
-	
-};
-
-extern TileMap* levelOne_map;
+//only load and free 1 stage since only 1 stage is played at a time
+extern Stage main_stage;
 
 #endif

@@ -250,32 +250,32 @@ src/misc/MediaLoader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/MediaLoader.cpp.s
 .PHONY : src/misc/MediaLoader.cpp.s
 
-src/misc/TileManager.o: src/misc/TileManager.cpp.o
+src/misc/StageManager.o: src/misc/StageManager.cpp.o
 
-.PHONY : src/misc/TileManager.o
+.PHONY : src/misc/StageManager.o
 
 # target to build an object file
-src/misc/TileManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.o
-.PHONY : src/misc/TileManager.cpp.o
+src/misc/StageManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.o
+.PHONY : src/misc/StageManager.cpp.o
 
-src/misc/TileManager.i: src/misc/TileManager.cpp.i
+src/misc/StageManager.i: src/misc/StageManager.cpp.i
 
-.PHONY : src/misc/TileManager.i
+.PHONY : src/misc/StageManager.i
 
 # target to preprocess a source file
-src/misc/TileManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.i
-.PHONY : src/misc/TileManager.cpp.i
+src/misc/StageManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.i
+.PHONY : src/misc/StageManager.cpp.i
 
-src/misc/TileManager.s: src/misc/TileManager.cpp.s
+src/misc/StageManager.s: src/misc/StageManager.cpp.s
 
-.PHONY : src/misc/TileManager.s
+.PHONY : src/misc/StageManager.s
 
 # target to generate assembly for a file
-src/misc/TileManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/TileManager.cpp.s
-.PHONY : src/misc/TileManager.cpp.s
+src/misc/StageManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dance-fighters.dir/build.make CMakeFiles/dance-fighters.dir/src/misc/StageManager.cpp.s
+.PHONY : src/misc/StageManager.cpp.s
 
 src/misc/char_selector.o: src/misc/char_selector.cpp.o
 
@@ -541,9 +541,9 @@ help:
 	@echo "... src/misc/MediaLoader.o"
 	@echo "... src/misc/MediaLoader.i"
 	@echo "... src/misc/MediaLoader.s"
-	@echo "... src/misc/TileManager.o"
-	@echo "... src/misc/TileManager.i"
-	@echo "... src/misc/TileManager.s"
+	@echo "... src/misc/StageManager.o"
+	@echo "... src/misc/StageManager.i"
+	@echo "... src/misc/StageManager.s"
 	@echo "... src/misc/char_selector.o"
 	@echo "... src/misc/char_selector.i"
 	@echo "... src/misc/char_selector.s"

@@ -88,31 +88,17 @@ cstdint
 raylib.h
 ../src/misc/raylib.h
 
-../src/misc/level_maps.h
-raylib.h
-../src/misc/raylib.h
-vector
--
-cstdint
--
-iostream
--
-
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/RenderSystem.cpp
-RenderSystem.h
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/RenderSystem.h
+/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/CameraSystem.cpp
+CameraSystem.h
+/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/CameraSystem.h
 core/system.h
 /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/core/system.h
 core/coordinator.h
 /home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/core/coordinator.h
 iostream
 -
-cmath
--
-misc/level_maps.h
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/misc/level_maps.h
 
-/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/RenderSystem.h
+/home/pab/CodeProj/cxx_projects/games/dance-fighters/src/systems/CameraSystem.h
 cstdint
 -
 core/system.h
