@@ -4,7 +4,6 @@
 #include "systems/InputReactorSystem.h"
 
 #include "systems/PhysicsSystem.h"
-#include "systems/WorldSystem.h"
 
 #include "systems/CameraSystem.h"
 #include "systems/RenderSystem.h"
@@ -50,7 +49,6 @@ std::vector <Entity> entities(MAX_ENTITIES);
 //function to initialize main ECS
 void InitMainECS();
 
-std::shared_ptr <WorldSystem> worldSystem;
 std::shared_ptr <RenderSystem> renderSystem;
 std::shared_ptr <AnimationSystem> animationSystem;
 
@@ -253,6 +251,11 @@ void logic()
 			//run logic for stage selector
 			gStageSelector.logic();
 			
+			if(gStageSelector.MoveToNextStateBool())
+			{
+				m_game_state = GameState::FIGHT_GAME;
+			}
+			
 			break;
 		}
 		case GameState::FIGHT_GAME:
@@ -347,14 +350,6 @@ void InitMainECS()
 	gCoordinator.RegisterComponent<Animation>();
 	gCoordinator.RegisterComponent<CollisionBox>();
 	
-	//make world system that only reacts to entitties
-	//with signature that has player component
-	worldSystem = gCoordinator.RegisterSystem<WorldSystem>();
-	worldSystem->Init();
-	
-	Signature sig_world;
-	sig_world.set(gCoordinator.GetComponentType<Player>());
-	gCoordinator.SetSystemSignature<WorldSystem>(sig_world);
 	
 	//make rendering system that only reacts to entities
 	//with render info component
@@ -422,7 +417,7 @@ void InitRaylibSystem()
 	
 	SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
 	
-    InitWindow(screenWidth, screenHeight, "Meta Game Fun");
+    InitWindow(screenWidth, screenHeight, "Dance Fighters");
 	
 	
 	// initialize SDL2 for gamepad handling
