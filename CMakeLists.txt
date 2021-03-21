@@ -47,6 +47,7 @@ src/misc/StageManager.cpp
 src/misc/globalvariables.cpp
 src/misc/MediaLoader.cpp
 src/misc/char_selector.cpp
+src/misc/stage_selector.cpp
 src/systems/PhysicsSystem.cpp
 src/systems/WorldSystem.cpp
 src/systems/CameraSystem.cpp

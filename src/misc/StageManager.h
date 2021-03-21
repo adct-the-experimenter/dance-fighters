@@ -1,5 +1,5 @@
-#ifndef TILE_MANAGER_H
-#define TILE_MANAGER_H
+#ifndef STAGE_MANAGER_H
+#define STAGE_MANAGER_H
 
 #include "level_maps.h"
 #include <vector>
@@ -13,12 +13,13 @@ public:
 	
 	bool LoadLevel(std::uint16_t level);
 	void FreeCurrentLoadedLevel();
-		
+	
 private:
 	
 	
 	
 	
 };
+
 
 #endif

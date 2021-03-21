@@ -22,7 +22,8 @@
 
 #include "misc/StageManager.h"
 
-#include "misc/char_selector.h" //for CharacterCreator class
+#include "misc/char_selector.h" //for CharacterSelector class
+#include "misc/stage_selector.h" //for StageSelector class
 
 #include <string>
 #include <chrono>
@@ -58,8 +59,6 @@ std::shared_ptr <InputReactorSystem> input_ReactSystem;
 
 std::shared_ptr <PhysicsSystem> physicsSystem;
 
-//function to initialize video game ECS
-void InitVideoGameECS();
 
 //function to init raylib system
 void InitRaylibSystem();
@@ -81,7 +80,7 @@ void render(); //draw visual representation of what happens in world to screen
 void sound(); //play sounds of audio representation of what happens in world 
 
 //game state
-enum class GameState : std::uint8_t {TITLE_MENU=0, CHAR_SELECTOR, GAME};
+enum class GameState : std::uint8_t {TITLE_MENU=0, CHAR_SELECTOR, STAGE_SELECTOR, FIGHT_GAME};
 GameState m_game_state = GameState::TITLE_MENU;
 
 //camera to follow players.
@@ -98,6 +97,8 @@ const std::int16_t screenHeight = 600;
 
 StageManager gStageManager;
 
+StageSelector gStageSelector;
+
 int main(int argc, char* args[])
 {
 	InitRaylibSystem();
@@ -110,38 +111,39 @@ int main(int argc, char* args[])
 	else
 	{
 	
-		gControllerInput.Init(1);
+
+		
+		//reset to new number of players for input handling
+		gControllerInput.Init(gNumPlayers);
+		gControllerInputHandler.Init(gNumPlayers);
 		
 		InitMainECS();
 		
-		//if first level loaded well
-		if(gStageManager.LoadLevel(0))
+		//create entities for players
+		for(size_t i = 0; i < gNumPlayers; i++)
 		{
-			bool quit = false;
-	
-			while (!quit)
-			{
-				// Detect window close button or ESC key
-				if(WindowShouldClose())
-				{
-					quit = true;
-				}    
-				
-				// Main game loop
-							
-				GameLoop();
-					
-			}
-		}
-		else
-		{
-			std::cout << "Failed to load first level. Quitting.";
+			entities[i] = gCoordinator.CreateEntity();
 		}
 		
+		
+		bool quit = false;
+
+		while (!quit)
+		{
+			// Detect window close button or ESC key
+			if(WindowShouldClose())
+			{
+				quit = true;
+			}    
+			
+			// Main game loop
+						
+			GameLoop();
+		}
+							
 	}
 	
 	gMediaLoader.freeMedia();
-	//gStageManager.FreeLevels();
 	
     
 	CloseRaylibSystem();
@@ -180,9 +182,13 @@ void handle_events()
 			gCharSelector.handle_input(gControllerInput,gKeyboardInput);
 			break;
 		}
-		case GameState::GAME:
+		case GameState::STAGE_SELECTOR:
 		{
-			worldSystem->handle_events(gKeyboardInput);
+			gStageSelector.handle_input(gControllerInput,gKeyboardInput);
+			break;
+		}
+		case GameState::FIGHT_GAME:
+		{
 			
 			input_ReactSystem->Update(gControllerInput);
 				
@@ -204,20 +210,15 @@ void logic()
 		{
 			bool moveNextState = false;
 			
+			if(gControllerInput.gamepads_vec[0].button == SDL_CONTROLLER_BUTTON_A)
+			{
+				moveNextState = true;
+			}
+			
 			//if need to move to next state
 			if(moveNextState)
 			{				
-				//create entities for players
-				for(size_t i = 0; i < gNumPlayers; i++)
-				{
-					entities[i] = gCoordinator.CreateEntity();
-				}
-				
-				//reset to new number of players for input handling
-				gControllerInput.Init(gNumPlayers);
-				gControllerInputHandler.Init(gNumPlayers);
-				
-				//initialze char creator
+				//initialze char selector
 				gCharSelector.Init(&entities,gNumPlayers);
 				
 				//initialize camera system
@@ -229,23 +230,33 @@ void logic()
 				//move to next state
 				m_game_state = GameState::CHAR_SELECTOR;
 			}
+			
 			break;
 		}
 		case GameState::CHAR_SELECTOR:
 		{
-			//run logic for character creator system here
+			//run logic for character selector
 			gCharSelector.logic();
 			
 			if(gCharSelector.MoveToNextStateBool())
 			{
-				m_game_state = GameState::GAME;
+				//initialize stage selector
+				gStageSelector.Init(gNumPlayers);
+				
+				m_game_state = GameState::STAGE_SELECTOR;
 			}
 			
 			break;
 		}
-		case GameState::GAME:
+		case GameState::STAGE_SELECTOR:
 		{
-			worldSystem->Update();
+			//run logic for stage selector
+			gStageSelector.logic();
+			
+			break;
+		}
+		case GameState::FIGHT_GAME:
+		{
 			
 			physicsSystem->Update(dt);
 			
@@ -273,20 +284,25 @@ void render()
 		}
 		case GameState::CHAR_SELECTOR:
 		{
-			DrawText("In character creator.Press A to finish character creation.", 80, 20, 20, BLACK);
+			DrawText("In character selector. Press A to select character.", 80, 20, 20, BLACK);
 			gCharSelector.render();
 			break;
 		}
-		case GameState::GAME:
+		case GameState::STAGE_SELECTOR:
 		{
+			DrawText("In stage selector. Press A to select stage.", 80, 20, 20, BLACK);
+			gStageSelector.render();
+			break;
+		}
+		case GameState::FIGHT_GAME:
+		{
+			DrawText("In game fight.", 80, 20, 20, BLACK);
 			
 			cameraSystem->Update();
 			
 		    //render any entity that has render component
 			renderSystem->Update();
-			
-			worldSystem->render();
-			
+						
 			break;
 		}
 	}
@@ -398,13 +414,6 @@ void InitMainECS()
 	animation_sig.set(gCoordinator.GetComponentType<Animation>());
 	animation_sig.set(gCoordinator.GetComponentType<RenderComponent>());
 	gCoordinator.SetSystemSignature<AnimationSystem>(animation_sig);
-	
-}
-
-void InitVideoGameECS()
-{
-	
-
 	
 }
 

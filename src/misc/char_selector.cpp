@@ -155,7 +155,6 @@ void CharacterSelector::logic()
 	
 }
 
-std::array <std::string,6> str_attr_array = {"Hair","Head", "Eyes","Upper Body", "Lower Body", "Shoes"};
 void CharacterSelector::render()
 {
 	
