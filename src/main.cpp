@@ -360,16 +360,14 @@ void InitMainECS()
 	
 	//Initialize components for entities
 	
-	gCoordinator.RegisterComponent<Transform2D>(); //id 1
-	gCoordinator.RegisterComponent<RigidBody2D>();
-	gCoordinator.RegisterComponent<Player>();
-	gCoordinator.RegisterComponent<RenderInfo>();
-	gCoordinator.RegisterComponent<RenderComponent>();
-	gCoordinator.RegisterComponent<RenderPosition>();
+	gCoordinator.RegisterComponent<Transform3D>(); //id 1
+	gCoordinator.RegisterComponent<RigidBody3D>();
+	gCoordinator.RegisterComponent<RenderModelComponent>();
 	gCoordinator.RegisterComponent<InputReact>();
 	gCoordinator.RegisterComponent<PhysicsTypeComponent>();
 	gCoordinator.RegisterComponent<Animation>();
 	gCoordinator.RegisterComponent<CollisionBox>();
+	gCoordinator.RegisterComponent<Player>();
 	
 	
 	//make rendering system that only reacts to entities
@@ -378,9 +376,8 @@ void InitMainECS()
 	
 	
 	Signature sig_render;
-	sig_render.set(gCoordinator.GetComponentType<RenderComponent>());
-	sig_render.set(gCoordinator.GetComponentType<Transform2D>());
-	sig_render.set(gCoordinator.GetComponentType<RenderPosition>());
+	sig_render.set(gCoordinator.GetComponentType<RenderModelComponent>());
+	sig_render.set(gCoordinator.GetComponentType<Transform3D>());
 	gCoordinator.SetSystemSignature<RenderSystem>(sig_render);
 	
 	//make input reactor system that only reacts to components input react and transform
@@ -388,21 +385,20 @@ void InitMainECS()
 	
 	Signature sig_input_react;
 	sig_input_react.set(gCoordinator.GetComponentType<InputReact>());
-	sig_input_react.set(gCoordinator.GetComponentType<RigidBody2D>());
+	sig_input_react.set(gCoordinator.GetComponentType<RigidBody3D>());
 	gCoordinator.SetSystemSignature<InputReactorSystem>(sig_input_react);
 	
 	//make physics system that only reacts to entitities 
 	//with signature that has these components
 	
-	gCoordinator.RegisterComponent<Gravity2D>(); 
-	
+	gCoordinator.RegisterComponent<Gravity3D>(); 
 	physicsSystem = gCoordinator.RegisterSystem<PhysicsSystem>();
 	
 	
 	Signature phys_sys_signature;
-	phys_sys_signature.set(gCoordinator.GetComponentType<Gravity2D>());
-	phys_sys_signature.set(gCoordinator.GetComponentType<RigidBody2D>());
-	phys_sys_signature.set(gCoordinator.GetComponentType<Transform2D>());
+	phys_sys_signature.set(gCoordinator.GetComponentType<Gravity3D>());
+	phys_sys_signature.set(gCoordinator.GetComponentType<RigidBody3D>());
+	phys_sys_signature.set(gCoordinator.GetComponentType<Transform3D>());
 	phys_sys_signature.set(gCoordinator.GetComponentType<PhysicsTypeComponent>());
 	phys_sys_signature.set(gCoordinator.GetComponentType<CollisionBox>());
 	gCoordinator.SetSystemSignature<PhysicsSystem>(phys_sys_signature);
@@ -413,8 +409,7 @@ void InitMainECS()
 	cameraSystem = gCoordinator.RegisterSystem<CameraSystem>();
 	
 	Signature camera_sig;
-	camera_sig.set(gCoordinator.GetComponentType<Transform2D>());
-	camera_sig.set(gCoordinator.GetComponentType<RenderPosition>());
+	camera_sig.set(gCoordinator.GetComponentType<Transform3D>());
 	camera_sig.set(gCoordinator.GetComponentType<Player>());
 	gCoordinator.SetSystemSignature<CameraSystem>(camera_sig);
 	
@@ -426,9 +421,9 @@ void InitMainECS()
 	animationSystem->Init();
 	
 	Signature animation_sig;
-	animation_sig.set(gCoordinator.GetComponentType<Transform2D>());
+	animation_sig.set(gCoordinator.GetComponentType<Transform3D>());
 	animation_sig.set(gCoordinator.GetComponentType<Animation>());
-	animation_sig.set(gCoordinator.GetComponentType<RenderComponent>());
+	animation_sig.set(gCoordinator.GetComponentType<RenderModelComponent>());
 	gCoordinator.SetSystemSignature<AnimationSystem>(animation_sig);
 	
 }

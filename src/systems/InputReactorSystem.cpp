@@ -12,7 +12,7 @@ void InputReactorSystem::Update(ControllerInput& input)
 	for (auto const& entity : mEntities)
 	{
 		auto& inputReactor = gCoordinator.GetComponent<InputReact>(entity);
-		auto& rigidBody = gCoordinator.GetComponent<RigidBody2D>(entity);
+		auto& rigidBody = gCoordinator.GetComponent<RigidBody3D>(entity);
 		
 		switch(inputReactor.actor_type)
 		{

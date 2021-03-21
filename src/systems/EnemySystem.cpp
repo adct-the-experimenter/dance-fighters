@@ -12,8 +12,8 @@ void EnemySystem::Update()
 	for (auto const& entity : mEntities)
 	{
 		auto& enemy = gCoordinator.GetComponent<Enemy>(entity);
-		auto& rigidBody = gCoordinator.GetComponent<RigidBody2D>(entity);
-		auto& transform = gCoordinator.GetComponent<Transform2D>(entity);
+		auto& rigidBody = gCoordinator.GetComponent<RigidBody3D>(entity);
+		auto& transform = gCoordinator.GetComponent<Transform3D>(entity);
 		
 		
 		switch(enemy.type)

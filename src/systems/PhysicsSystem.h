@@ -12,11 +12,7 @@ public:
 	void Update(float& dt);
 
 private:
-	void CheckCollisionWithTilesRPG(float& obj_x, float& obj_y, 
-									float& obj_vx, float& obj_vy, 
-									float& dt, 
-									std::uint32_t& obj_width,
-									std::uint32_t& obj_height);
+	
 };
 
 #endif

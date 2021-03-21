@@ -29,13 +29,12 @@ void CameraSystem::Update()
 	for (auto const& entity : mEntities)
 	{
 		
-		auto& transform = gCoordinator.GetComponent<Transform2D>(entity);
+		auto& transform = gCoordinator.GetComponent<Transform3D>(entity);
 		auto& player = gCoordinator.GetComponent<Player>(entity);
 		
 		
 		//center camera to follow both players
 		
-		//change camera coordinates
 		
 		
 	}
