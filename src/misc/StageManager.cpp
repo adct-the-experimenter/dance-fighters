@@ -63,6 +63,10 @@ bool StageManager::LoadLevel(std::uint16_t level)
 
 void StageManager::FreeCurrentLoadedLevel()
 {
-	UnloadImageColors(main_stage.mapPixels);   // Unload color array
-	UnloadModel(main_stage.model);             // Unload map model
+	if(main_stage.mapPixels)
+	{
+		UnloadImageColors(main_stage.mapPixels);   // Unload color array
+		UnloadModel(main_stage.model);             // Unload map model
+	}
+	
 }

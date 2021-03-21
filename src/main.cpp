@@ -142,7 +142,7 @@ int main(int argc, char* args[])
 	}
 	
 	gMediaLoader.freeMedia();
-	
+	gStageManager.FreeCurrentLoadedLevel();
     
 	CloseRaylibSystem();
 	
@@ -253,7 +253,13 @@ void logic()
 			
 			if(gStageSelector.MoveToNextStateBool())
 			{
-				m_game_state = GameState::FIGHT_GAME;
+				//initialize fight game state
+				
+				if(gStageManager.LoadLevel( gStageSelector.StageSelected() ) )
+				{
+					m_game_state = GameState::FIGHT_GAME;
+				}
+				
 			}
 			
 			break;
@@ -271,11 +277,16 @@ void logic()
 	}
 }
 
+Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };  // Set model position
+
 void render()
 {
 	BeginDrawing();
 
 	ClearBackground(RAYWHITE);
+	
+        
+	
 	
 	switch(m_game_state)
 	{
@@ -301,10 +312,20 @@ void render()
 		{
 			DrawText("In game fight.", 80, 20, 20, BLACK);
 			
+			BeginMode3D(main_camera.GetReferenceToCamera());
+			
+			//draw the stage
+			if(main_stage.mapPixels)
+			{
+				DrawModel(main_stage.model, mapPosition, 1.0f, WHITE); // Draw maze map
+			}
+			
 			cameraSystem->Update();
 			
 		    //render any entity that has render component
 			renderSystem->Update();
+			
+			EndMode3D();
 						
 			break;
 		}

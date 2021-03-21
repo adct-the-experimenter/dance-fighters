@@ -44,23 +44,16 @@ bool IsObjectInCameraView(float& posX, float& posY, Rectangle& camera_rect)
 	return true;
 }
 
-Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };  // Set model position
+
 
 void RenderSystem::Update()
 {
 			
 	if(this->m_camera_ptr)
 	{			
-		//render texture background color
-		ClearBackground(RAYWHITE);
 		
-		BeginMode3D(this->m_camera_ptr->GetReferenceToCamera());
-        
-        //draw the stage
-        if(main_stage.mapPixels)
-        {
-			DrawModel(main_stage.model, mapPosition, 1.0f, WHITE); // Draw maze map
-		}
+		
+		
         
 		//for every entity
 		for (auto const& entity : mEntities)
@@ -131,7 +124,7 @@ void RenderSystem::Update()
 			}
 		}
 		
-		EndMode3D();
+		
 					
 	}
 		

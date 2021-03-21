@@ -38,11 +38,7 @@ void CharacterSelector::Init(std::vector <Entity> *entities_vec_ptr, std::uint8_
 	
 	char_confirmations.resize(num_players);
 	
-	//initialize name slot text box locations for each character
-	for(size_t it = 0; it < fighter_boxes.size(); it++)
-	{
-		fighter_boxes[it].name_slot.textBox = {100*(it+1),20,50,20};
-	}
+	
 }
 
 void CharacterSelector::handle_input(ControllerInput& controller_input, KeyboardInput& key_input)
@@ -161,15 +157,12 @@ void CharacterSelector::render()
 	//render body part slots
 	for(size_t i = 0; i < fighter_boxes.size(); i++)
 	{
-		Vector2 position = {100*(i+1) + i*50,0};
 		
 		//if selection is not confirmed
 		if(!fighter_boxes[i].confirm_selection)
 		{
-			//draw textures of each slot
-			
-			
-			//render text box for typing slot
+			//draw texture of character select boxes
+			DrawTexture(char_select_texture, 200, 100, WHITE);
 			
 		}
 		

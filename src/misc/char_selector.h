@@ -41,30 +41,17 @@ public:
 	std::uint8_t render_slot = 2; //index for first render slot
 	std::uint8_t last_slot = 7; //index for the last slot
 	
-	struct NameSlot
-	{
-		//text slot with a limit of 15 characters
-		char text[15];
-		
-		Rectangle textBox;
-		size_t letterCount = 0;
-	};
 
-	struct RenderModelSlot
+	struct ChoiceIndicator
 	{
 		Rectangle frame_clip = {0,0,30,30};
 		
-		size_t style_choice = 0;
-		size_t color_choice = 0;
 	};
 
 	struct FighterBox
 	{
-		
-		NameSlot name_slot;
-		
-		//hair = 0, head=1,eyes=2,upper clothing = 3, lower clothing = 4, shoes=5
-		RenderModelSlot render_slot;
+				
+		ChoiceIndicator choice_indicator;
 			
 		bool confirm_selection = false;
 	};
