@@ -25,8 +25,8 @@ bool StageManager::LoadLevel(std::uint16_t level)
 	{
 		case 0:
 		{  
-			mapFilePath = DATADIR_STR + "/stage_assets/cubicmap.png";
-			textureFilePath = DATADIR_STR + "/stage_assets/cubicmap_atlas.png";
+			mapFilePath = DATADIR_STR + "/stage_assets/training_stage/training_map.png";
+			textureFilePath = DATADIR_STR + "/stage_assets/training_stage/trainingmap_atlas.png";
 			break;
 		}
 	}

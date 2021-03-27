@@ -17,7 +17,7 @@ void CameraSystem::Init(CustomCamera* camera,
 	*m_camera_ptr->GetPointerToCamera() = { { 0.2f, 0.4f, 0.2f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
 	//m_camera_ptr->camera_rect.width = screenWidth;
 	//m_camera_ptr->camera_rect.height = screenHeight;
-	SetCameraMode(camera->GetReferenceToCamera(), CAMERA_PERSPECTIVE);     // Set camera mode
+	SetCameraMode(camera->GetReferenceToCamera(), CAMERA_FREE);     // Set camera mode
 	
 	
 }
@@ -35,6 +35,8 @@ void CameraSystem::Update()
 		
 		//center camera to follow both players
 		
+		//put camera at halfway point of distance vector made from  2 players positions
+		//zoom based on distance between 2 players.
 		
 		
 	}
