@@ -136,7 +136,7 @@ void PhysicsSystem::Update(float& dt)
 		auto& rigidBody = gCoordinator.GetComponent<RigidBody3D>(entity);
 		auto& transform = gCoordinator.GetComponent<Transform3D>(entity);
 		auto& physics_type_comp = gCoordinator.GetComponent<PhysicsTypeComponent>(entity);
-		auto& collisionBox = gCoordinator.GetComponent<CollisionBox>(entity);
+		//auto& collisionBox = gCoordinator.GetComponent<CollisionBox>(entity);
 		
 		// Forces
 		auto const& gravity = gCoordinator.GetComponent<Gravity3D>(entity);
@@ -147,7 +147,7 @@ void PhysicsSystem::Update(float& dt)
 			{
 				//move transform component by velocity of rigid body multiplied by time
 				transform.position.x += rigidBody.velocity.x * dt;
-				transform.position.y += rigidBody.velocity.y * dt;
+				transform.position.z += rigidBody.velocity.z * dt;
 				
 				
 				

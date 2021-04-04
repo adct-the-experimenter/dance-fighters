@@ -92,9 +92,13 @@ void CharacterSelector::handle_keyboard_input(KeyboardInput& input)
 	
 }
 
+Vector3 player1_start = {1.0f,2.0f,0.0f};
+Vector3 player2_start = {-1.0f,2.0f,0.0f};
+
 void CharacterSelector::logic()
 {
 	int width = 30;
+	
 	
 	for(size_t i = 0; i < fighter_boxes.size(); i++)
 	{  	
@@ -108,27 +112,76 @@ void CharacterSelector::logic()
 			{
 				char_confirmations[i] = true;
 				
-				//add multiple render component 
+				//add render component 
 				
+				gCoordinator.AddComponent(
+								*player_entities_vec[i],
+								RenderModelComponent {
+									.model = base_fighter_model,
+									.texture = base_fighter_texture
+								}
+							);
 				
-				//add render position
 				
 				//add player info component
-				
+				gCoordinator.AddComponent(
+								*player_entities_vec[i],
+								Player {
+									.player_num = i + 1
+								}
+							);
 														
 				//add input react component
-				
+				InputReact react;
+				react.actor_type = InputReactorType::PLAYER;
+				react.reactToInput = true;
+				react.player_num = i + 1;
+								 
+				gCoordinator.AddComponent(
+								*player_entities_vec[i],
+								react
+								);
+							
 				//add transform
+				Vector3 initP; 
+				if(i == 0){ initP = player1_start;}
+				else if(i == 1){ initP = player2_start;}
+				
+				gCoordinator.AddComponent(
+							*player_entities_vec.at(i),
+							Transform3D{
+								.position = initP
+							}
+						);
 				
 				//add rigid body
+				Vector3 initV = {0.0f,0.0f,0.0f};
+				gCoordinator.AddComponent(
+							*player_entities_vec.at(i),
+							RigidBody3D{
+								.velocity = initV
+							}
+						);
 						
 				//add gravity component for later use
-				
-				//add physics type
+				Vector3 grav = {0.0f,0.0f,0.0f};
+				gCoordinator.AddComponent(
+							*player_entities_vec.at(i),
+							Gravity3D{
+								.force = grav 
+							}
+						);
 						
-				//add collision box
-				
-				//add animation component
+				//add physics type
+				PhysicsType pType = PhysicsType::FIGHTING_GAME;
+				gCoordinator.AddComponent(
+							*player_entities_vec.at(i),
+							PhysicsTypeComponent{
+								.phy_type = pType 
+							}
+						);
+						
+
 				
 			}
 			

@@ -6,6 +6,7 @@
 
 extern Coordinator gCoordinator;
 
+float speed_factor = 10.0f;
 
 void InputReactorSystem::Update(ControllerInput& input)
 {
@@ -27,13 +28,14 @@ void InputReactorSystem::Update(ControllerInput& input)
 					//if player number matches game pad
 					if(inputReactor.player_num == i + 1)
 					{
+						
 						if(input.gamepads_vec[i].x_axis > 16300)
 						{
-							rigidBody.velocity.x = 100.0f;
+							rigidBody.velocity.x = speed_factor;
 						}
 						else if(input.gamepads_vec[i].x_axis < -16300)
 						{
-							rigidBody.velocity.x = -100.0f;
+							rigidBody.velocity.x = -speed_factor;
 						}
 						else 
 						{
@@ -42,15 +44,15 @@ void InputReactorSystem::Update(ControllerInput& input)
 						
 						if(input.gamepads_vec[i].y_axis < -16300)
 						{
-							rigidBody.velocity.y = -100.0f;
+							rigidBody.velocity.z = -speed_factor;
 						}
 						else if(input.gamepads_vec[i].y_axis > 16300)
 						{
-							rigidBody.velocity.y = 100.0f;
+							rigidBody.velocity.z = speed_factor;
 						}
 						else 
 						{
-							rigidBody.velocity.y = 0.0f;
+							rigidBody.velocity.z = 0.0f;
 						}
 					}
 					
