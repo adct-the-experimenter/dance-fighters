@@ -45,6 +45,8 @@ public:
 		
 		//includes buttons and dpad
 		SDL_GameControllerButton button;
+		//0 is null. 1 is pressed, 2 is released.
+		int button_state = 0;
 	};
 	
 	std::vector <GamepadInfo> gamepads_vec;
@@ -59,8 +61,6 @@ public:
 	{
 		for(size_t i = 0; i < gamepads_vec.size(); i++)
 		{
-			gamepads_vec[i].x_dir_axis = 0;
-			gamepads_vec[i].y_dir_axis = 0;
 			gamepads_vec[i].button =  SDL_CONTROLLER_BUTTON_INVALID;
 		}
 	};

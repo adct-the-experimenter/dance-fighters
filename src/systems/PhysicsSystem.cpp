@@ -145,8 +145,11 @@ void PhysicsSystem::Update(float& dt)
 		{
 			case PhysicsType::FIGHTING_GAME:
 			{
+				//have z axis movement move up or down in circle
+				//have x axis movement move left or right
+				
 				//move transform component by velocity of rigid body multiplied by time
-				transform.position.x += rigidBody.velocity.x * dt;
+				transform.position.x += rigidBody.velocity.x*dt + rigidBody.velocity.z*dt;
 				transform.position.z += rigidBody.velocity.z * dt;
 				
 				
