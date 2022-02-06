@@ -32,4 +32,7 @@ void MediaLoader::freeMedia()
 {
 	UnloadTexture(title_menu_texture);
 	UnloadTexture(char_select_texture);
+	
+	UnloadTexture(base_fighter_texture);
+	UnloadModel(base_fighter_model);
 }

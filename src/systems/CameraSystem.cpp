@@ -12,13 +12,9 @@ extern Coordinator gCoordinator;
 void CameraSystem::Init(CustomCamera* camera,
 				std::uint16_t screenWidth, std::uint16_t screenHeight)
 {
-	m_camera_ptr = camera;
+	main_camera_ptr = camera;
 	
-	*m_camera_ptr->GetPointerToCamera() = { { 0.2f, 0.4f, 0.2f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
-	//m_camera_ptr->camera_rect.width = screenWidth;
-	//m_camera_ptr->camera_rect.height = screenHeight;
-	SetCameraMode(camera->GetReferenceToCamera(), CAMERA_FREE);     // Set camera mode
-	
+	*main_camera_ptr->GetPointerToCamera() = (Camera3D){(Vector3){-5, 8, -5}, (Vector3){0, 2, 0}, (Vector3){0, 2, 0}, 45, CAMERA_PERSPECTIVE};
 	
 }
 
@@ -42,7 +38,7 @@ void CameraSystem::Update()
 	}
 	
 	// Update camera
-	UpdateCamera(m_camera_ptr->GetPointerToCamera());      
+	UpdateCamera(main_camera_ptr->GetPointerToCamera());      
 	
 }
 

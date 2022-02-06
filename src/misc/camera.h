@@ -20,19 +20,19 @@ public:
 		camera.type = CAMERA_PERSPECTIVE;                   // Camera mode type
 	}
 	
-	Camera* GetPointerToCamera()
+	Camera3D* GetPointerToCamera()
 	{
 		return &camera;
 	}
 	
-	Camera& GetReferenceToCamera()
+	Camera3D& GetReferenceToCamera()
 	{
 		return camera;
 	}
 	
 private:
 
-	Camera camera;
+	Camera3D camera;
 	
 };
 

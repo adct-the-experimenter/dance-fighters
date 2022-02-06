@@ -51,29 +51,29 @@ void StageSelector::handle_controller_input(ControllerInput& input)
 	for(size_t i = 0; i < input.gamepads_vec.size();i++)
 	{
 		//if joystick moved up, go up a slot
-		if(input.gamepads_vec[i].y_dir_axis < -joystick_border)
+		if(input.gamepads_vec[i].left_y_dir_axis < -joystick_border)
 		{
 			
 		}
 		//else if joystick moved down, go down a slot
-		else if(input.gamepads_vec[i].y_dir_axis > joystick_border)
+		else if(input.gamepads_vec[i].left_y_dir_axis > joystick_border)
 		{
 			
 		}
 			
 		//if joystick moved left, go left on color choice
-		if(input.gamepads_vec[i].x_dir_axis < -joystick_border)
+		if(input.gamepads_vec[i].left_x_dir_axis < -joystick_border)
 		{
 			
 		}
 		//if joystick moved right, go right on color choice
-		else if(input.gamepads_vec[i].x_dir_axis > joystick_border)
+		else if(input.gamepads_vec[i].left_x_dir_axis > joystick_border)
 		{
 			
 		}
 		
 		//if a button pressed, turn confirm bool on
-		if(input.gamepads_vec[i].button == SDL_CONTROLLER_BUTTON_A)
+		if(input.gamepads_vec[i].button_up_released == SDL_CONTROLLER_BUTTON_A)
 		{
 			stage_confirmation = true;
 		}

@@ -18,7 +18,7 @@ public:
 	
 protected:
 
-	CustomCamera* m_camera_ptr;
+	CustomCamera* main_camera_ptr;
 };
 
 #endif

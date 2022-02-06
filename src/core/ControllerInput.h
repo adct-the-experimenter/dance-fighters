@@ -36,17 +36,42 @@ public:
 												
 	struct GamepadInfo {
 		//left joystick 
-		int16_t x_axis;
-		int16_t y_axis;
+		int16_t left_x_axis;
+		int16_t left_y_axis;
+		
+		//right joystick
+		int16_t right_x_axis;
+		int16_t right_y_axis;
+		
+		int16_t right_x_dir_digital;
+		int16_t right_y_dir_digital;
 		
 		//joystick direction, gets reset for non-continous movement
-		int16_t x_dir_axis;
-		int16_t y_dir_axis;
+		int16_t left_x_dir_axis;
+		int16_t left_y_dir_axis;
+		
+		int16_t left_x_dir_digital;
+		int16_t left_y_dir_digital;
 		
 		//includes buttons and dpad
-		SDL_GameControllerButton button;
+		
+		//which button is currently pressed down
+		SDL_GameControllerButton button_down;
+		
+		//which button was recently released
+		SDL_GameControllerButton button_up_released;
+		
+		//which button was previously pressed
+		SDL_GameControllerButton prev_button_down;
+		
+		//which button was previously released
+		SDL_GameControllerButton prev_button_up_released;
+		
 		//0 is null. 1 is pressed, 2 is released.
 		int button_state = 0;
+		
+		//indicates which buttons are being held
+		bool button_held_array[16];
 	};
 	
 	std::vector <GamepadInfo> gamepads_vec;
@@ -61,9 +86,30 @@ public:
 	{
 		for(size_t i = 0; i < gamepads_vec.size(); i++)
 		{
-			gamepads_vec[i].button =  SDL_CONTROLLER_BUTTON_INVALID;
+			gamepads_vec[i].prev_button_down = gamepads_vec[i].button_down;
+			
+			gamepads_vec[i].prev_button_up_released = gamepads_vec[i].button_up_released;
+			
+			
+			gamepads_vec[i].button_held_array[gamepads_vec[i].button_down] = true;
+			gamepads_vec[i].button_held_array[gamepads_vec[i].button_up_released] = false;
+			
+			//if button down is the same button as button released, reset button down.
+			if(gamepads_vec[i].button_down == gamepads_vec[i].button_up_released)
+			{
+				gamepads_vec[i].button_down = SDL_CONTROLLER_BUTTON_INVALID;
+				gamepads_vec[i].button_held_array[gamepads_vec[i].button_down] = false;
+			}
+			
+			gamepads_vec[i].button_up_released =  SDL_CONTROLLER_BUTTON_INVALID;
+			gamepads_vec[i].left_x_dir_digital =  0;
+			gamepads_vec[i].left_y_dir_digital =  0;
+			gamepads_vec[i].right_x_dir_digital = 0;
+			gamepads_vec[i].right_y_dir_digital = 0;
 		}
 	};
+		
+	
 };
 
 #endif

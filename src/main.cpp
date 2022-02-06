@@ -208,7 +208,8 @@ void logic()
 		{
 			bool moveNextState = false;
 			
-			if(gControllerInput.gamepads_vec[0].button == SDL_CONTROLLER_BUTTON_A)
+			if(gControllerInput.gamepads_vec[0].button_up_released == SDL_CONTROLLER_BUTTON_A
+			   || gControllerInput.gamepads_vec[1].button_up_released == SDL_CONTROLLER_BUTTON_A)
 			{
 				moveNextState = true;
 			}
@@ -285,9 +286,6 @@ void render()
 
 	ClearBackground(RAYWHITE);
 	
-        
-	
-	
 	switch(m_game_state)
 	{
 		case GameState::TITLE_MENU:
@@ -313,12 +311,6 @@ void render()
 			DrawText("In game fight.", 80, 20, 20, BLACK);
 			
 			BeginMode3D(main_camera.GetReferenceToCamera());
-			
-			//draw the stage
-			if(main_stage.mapPixels)
-			{
-				DrawModel(main_stage.model, mapPosition, 1.0f, WHITE); // Draw maze map
-			}
 			
 			cameraSystem->Update();
 			
