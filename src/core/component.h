@@ -70,11 +70,28 @@ struct Player
 };
 
 enum class InputReactorType : std::uint8_t { NONE=0, PLAYER, CAR};
+enum class InputArrows : std::uint8_t {NONE=0,
+								//single steps
+								  UP,DOWN,LEFT,RIGHT,
+								  //combo steps 
+								  UP_LEFT,UP_DOWN,UP_RIGHT, 
+								  DOWN_LEFT,DOWN_RIGHT, 
+								  LEFT_RIGHT
+								  };
 struct InputReact
 {
 	InputReactorType actor_type;
 	bool reactToInput = false;
 	std::uint8_t player_num = 0;
+	
+	//array to keep track of sequential steps
+	InputArrows seq_steps_array[4];
+	std::uint8_t current_index = 0;
+	
+	//variable for time attack sequence
+	double time_attack_seq;
+	
+	
 };
 
 enum class PhysicsType : std::uint8_t {LIFE_RPG=0, PLATFORMER, FIGHTING_GAME};
