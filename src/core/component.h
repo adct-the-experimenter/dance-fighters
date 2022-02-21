@@ -86,10 +86,11 @@ struct InputReact
 	
 	//array to keep track of sequential steps
 	InputArrows seq_steps_array[4];
+	InputArrows current_arrows_held;
 	std::uint8_t current_index = 0;
 	
 	//variable for time attack sequence
-	double time_attack_seq;
+	double time_attack_seq = 0.0f;
 	
 	
 };

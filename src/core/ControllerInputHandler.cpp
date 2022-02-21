@@ -259,7 +259,7 @@ void ControllerInputHandler::SetGamepadInfo(ControllerInput& input_info)
 				input_info.gamepads_vec[7].button_down = SDL_GameControllerButton(sdl_event.cbutton.button);
 				
 			}
-			
+						
 			//setting dpad info
 			for(size_t i = 0; i < m_num_players; i++)
 			{

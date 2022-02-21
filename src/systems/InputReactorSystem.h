@@ -11,6 +11,9 @@ class InputReactorSystem : public System
 public:
 
 	void Update(ControllerInput& input);
+	
+	//function to keep track of time for arrows registered
+	void TrackTime(double& dt);
 };
 
 #endif
