@@ -258,6 +258,45 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 		
 	}
 	
+	//grab activation
+	
+	bool grabModeEnabled = false;
+	
+	if(inputReactor.seq_steps_array[inputReactor.current_index] == InputArrows::UP)
+	{
+		//check if previous step input was down arrow
+		
+		if(inputReactor.current_index == 0)
+		{
+			if(inputReactor.seq_steps_array[3] == InputArrows::DOWN)
+			{
+				std::cout << "Start grab mode!\n";
+				grabModeEnabled = true;
+				
+				//reset sequential steps array
+				inputReactor.seq_steps_array[0] = InputArrows::NONE;
+				inputReactor.seq_steps_array[1] = InputArrows::NONE;
+				inputReactor.seq_steps_array[2] = InputArrows::NONE;
+				inputReactor.seq_steps_array[3] = InputArrows::NONE;
+			}
+		}
+		else
+		{
+			if(inputReactor.seq_steps_array[inputReactor.current_index - 1] == InputArrows::DOWN)
+			{
+				std::cout << "Start grab mode!\n";
+				grabModeEnabled = true;
+				
+				//reset sequential steps array
+				inputReactor.seq_steps_array[0] = InputArrows::NONE;
+				inputReactor.seq_steps_array[1] = InputArrows::NONE;
+				inputReactor.seq_steps_array[2] = InputArrows::NONE;
+				inputReactor.seq_steps_array[3] = InputArrows::NONE;
+			}
+		}
+		
+	}
+	
 	//check buttons held down for movement
 	switch(inputReactor.current_arrows_held)
 	{
@@ -270,7 +309,7 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 			//	-Move closer to opponent
 			//	-double press in an attack.
 			
-			if(!attackModeEnabled){rigidBody.velocity.z = speed_factor;}
+			if(!attackModeEnabled && !grabModeEnabled){rigidBody.velocity.z = speed_factor;}
 			
 			break;
 		}
@@ -279,7 +318,7 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 			//Back arrow
 			//	-Move away from opponent
 			//	-together with left or right, guard
-			if(!guardModeEnabled){rigidBody.velocity.z = -speed_factor; }
+			if(!guardModeEnabled && !grabModeEnabled){rigidBody.velocity.z = -speed_factor; }
 			break;
 		}
 		
