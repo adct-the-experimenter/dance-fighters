@@ -96,7 +96,7 @@ static const Vector3 player1_start = {1.0f,2.0f,0.0f};
 static const float player1_rad_angle = 0.0f;
 
 static Vector3 player2_start = {-1.0f,2.0f,0.0f};
-static const float player2_rad_angle = 180.0f;
+static const float player2_rad_angle = PI;
 
 void CharacterSelector::logic()
 {

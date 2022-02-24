@@ -34,7 +34,10 @@ void CameraSystem::Update()
 		
 		
 		//center camera to follow both players
-		
+		//if(current_player == 0)
+		//{
+			//main_camera_ptr->GetPointerToCamera()->target = transform.position;
+		//}
 		//put camera at halfway point of distance vector made from  2 players positions
 		//zoom based on distance between 2 players.
 		
