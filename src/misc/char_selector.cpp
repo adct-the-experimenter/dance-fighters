@@ -92,8 +92,11 @@ void CharacterSelector::handle_keyboard_input(KeyboardInput& input)
 	
 }
 
-Vector3 player1_start = {1.0f,2.0f,0.0f};
-Vector3 player2_start = {-1.0f,2.0f,0.0f};
+static const Vector3 player1_start = {1.0f,2.0f,0.0f};
+static const float player1_rad_angle = 0.0f;
+
+static Vector3 player2_start = {-1.0f,2.0f,0.0f};
+static const float player2_rad_angle = 180.0f;
 
 void CharacterSelector::logic()
 {
@@ -143,14 +146,17 @@ void CharacterSelector::logic()
 								);
 							
 				//add transform
-				Vector3 initP; 
-				if(i == 0){ initP = player1_start;}
-				else if(i == 1){ initP = player2_start;}
+				Vector3 initP;
+				float rad_angle = 0.0f;
+				
+				if(i == 0){ initP = player1_start; rad_angle = player1_rad_angle;}
+				else if(i == 1){ initP = player2_start; rad_angle = player2_rad_angle;}
 				
 				gCoordinator.AddComponent(
 							*player_entities_vec.at(i),
 							Transform3D{
-								.position = initP
+								.position = initP,
+								.polar_rad_angle = rad_angle
 							}
 						);
 				

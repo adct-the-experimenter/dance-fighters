@@ -6,7 +6,7 @@
 
 extern Coordinator gCoordinator;
 
-float speed_factor = 10.0f;
+float speed_factor = 1.0f;
 
 /*
 
@@ -297,53 +297,80 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 		
 	}
 	
-	//check buttons held down for movement
-	switch(inputReactor.current_arrows_held)
+	
+	if(!guardModeEnabled && !grabModeEnabled && !attackModeEnabled)
 	{
-		//single arrows
-		case InputArrows::LEFT:{rigidBody.velocity.x = speed_factor; break;}
-		case InputArrows::RIGHT:{rigidBody.velocity.x = -speed_factor; break;}
-		case InputArrows::UP:
+		//check buttons held down for movement
+		switch(inputReactor.current_arrows_held)
 		{
-			//Up arrow
-			//	-Move closer to opponent
-			//	-double press in an attack.
+			//single arrows
+			case InputArrows::LEFT:{rigidBody.velocity.x = speed_factor; break;}
+			case InputArrows::RIGHT:{rigidBody.velocity.x = -speed_factor; break;}
+			case InputArrows::UP:
+			{
+				//Up arrow
+				//	-Move closer to opponent
+				//	-double press in an attack.
+				rigidBody.velocity.z = speed_factor;
+				
+				break;
+			}
+			case InputArrows::DOWN:
+			{
+				//Back arrow
+				//	-Move away from opponent
+				//	-together with left or right, guard
+				rigidBody.velocity.z = -speed_factor;
+				break;
+			}
 			
-			if(!attackModeEnabled && !grabModeEnabled){rigidBody.velocity.z = speed_factor;}
 			
-			break;
+			//combo arrows
+			case InputArrows::UP_LEFT:
+			{
+				rigidBody.velocity.x = speed_factor; 
+				rigidBody.velocity.z = speed_factor;
+				break;
+			}
+			case InputArrows::UP_RIGHT:
+			{
+				rigidBody.velocity.x = -speed_factor; 
+				rigidBody.velocity.z = speed_factor;
+				break;
+			}
+			case InputArrows::UP_DOWN:
+			{
+				break;
+			}
+			
+			case InputArrows::DOWN_LEFT:
+			{
+				rigidBody.velocity.x = speed_factor; 
+				rigidBody.velocity.z = -speed_factor;
+				break;
+			}
+			case InputArrows::DOWN_RIGHT:
+			{
+				rigidBody.velocity.x = -speed_factor; 
+				rigidBody.velocity.z = -speed_factor;
+				break;
+			}
+			
+			case InputArrows::LEFT_RIGHT:
+			{
+				//Left and right arrow
+				//	-separate, side step
+				//	-together, no movement 
+				rigidBody.velocity.x = 0.0f; 
+				rigidBody.velocity.z = 0.0f; 
+				break;
+			}
+			
+			//none
+			case InputArrows::NONE:{rigidBody.velocity.x = 0.0f; rigidBody.velocity.z = 0.0f; break;}
 		}
-		case InputArrows::DOWN:
-		{
-			//Back arrow
-			//	-Move away from opponent
-			//	-together with left or right, guard
-			if(!guardModeEnabled && !grabModeEnabled){rigidBody.velocity.z = -speed_factor; }
-			break;
-		}
-		
-		
-		//combo arrows
-		case InputArrows::UP_LEFT:{break;}
-		case InputArrows::UP_RIGHT:{break;}
-		case InputArrows::UP_DOWN:{break;}
-		
-		case InputArrows::DOWN_LEFT:{break;}
-		case InputArrows::DOWN_RIGHT:{break;}
-		
-		case InputArrows::LEFT_RIGHT:
-		{
-			//Left and right arrow
-			//	-separate, side step
-			//	-together, no movement 
-			rigidBody.velocity.x = 0.0f; 
-			rigidBody.velocity.z = 0.0f; 
-			break;
-		}
-		
-		//none
-		case InputArrows::NONE:{rigidBody.velocity.x = 0.0f; rigidBody.velocity.z = 0.0f; break;}
 	}
+	
 }
 
 void InputReactorSystem::TrackTime(double& dt)

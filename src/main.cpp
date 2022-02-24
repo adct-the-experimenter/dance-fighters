@@ -258,6 +258,8 @@ void logic()
 				
 				if(gStageManager.LoadLevel( gStageSelector.StageSelected() ) )
 				{
+					physicsSystem->Init();
+					
 					m_game_state = GameState::FIGHT_GAME;
 				}
 				
