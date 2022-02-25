@@ -226,7 +226,7 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 	
 	if(inputReactor.seq_steps_array[inputReactor.current_index] == InputArrows::DOWN)
 	{
-		//check if previous step input was up arrow
+		//check if previous step input was down arrow
 		if(inputReactor.current_index == 0)
 		{
 			if(inputReactor.seq_steps_array[3] == InputArrows::DOWN)
@@ -340,6 +340,11 @@ static void ReactToArrows(InputReact& inputReactor,RigidBody3D& rigidBody)
 			}
 			case InputArrows::UP_DOWN:
 			{
+				//Up and down arrow
+				//	-separate, move closer or father form opponent
+				//	-together, no movement
+				rigidBody.velocity.x = 0.0f; 
+				rigidBody.velocity.z = 0.0f; 
 				break;
 			}
 			
